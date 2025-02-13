@@ -4,22 +4,32 @@ import { createItem } from "./services/item.js";
 const myCart = [];
 const myWhishList = [];
 
-console.log("🤑 Welcome to the your Shopee Cart!\n");
+console.log("🤑 Welcome to the your Weed Cart!\n");
 
-const item1 = await createItem("Strain - Mint", 9, 5);
-const item2 = await createItem("Strain - GoldGreen", 15, 5);
-const item3 = await createItem("Strain - Blueberry", 12, 5);
+// Criando itens : 🖌
+const item1 = await createItem("Strain (1) - Mint", 5, 8);
+const item2 = await createItem("Strain (2) - GoldGreen", 15, 2);
+const item3 = await createItem("Strain (3) - Blueberry", 12, 4);
+const item4 = await createItem("Strain (4) - GrandDaddy", 2, 4);
+const item5 = await createItem("Strain (5) - WhiteWindow", 2, 6);
+const item6 = await createItem("Strain (6) - Gorila Glue", 2, 4);
 
+//📓 -> Adicionando itens : 📥
 await cartServices.addItem(myCart, item1);
 await cartServices.addItem(myCart, item2);
+await cartServices.addItem(myCart, item4);
 await cartServices.addItem(myWhishList, item3);
+await cartServices.addItem(myWhishList, item5);
+await cartServices.addItem(myWhishList, item6);
 
-await cartServices.deleteItemFromCart(myCart, item2.name);
+//📓 -> Exibindo itens : 👓
+await cartServices.displayCart(myCart);
+await cartServices.displayWhishList(myWhishList);
 
-console.log(`🎄 Strain - Mint ==> R$:${item1.subtotal()}`);
-console.log(`🎋 Strain - GoldGreen ==> R$:${item2.subtotal()}`);
-console.log(`🍓 Strain - Blueberry ==> R$:${item3.subtotal()}\n`);
+//📓 -> Removendo itens e deletando : 🐱‍👤
+await cartServices.removeItem(myCart, 2);
+// await cartServices.deleteItemFromCart(myCart, item2);
 
-console.log("💰 Total result:")
+//📓 -> Totalizando Meu Carrinho e Minha Lista de Desejos : 🛒💜
 await cartServices.totalItemsInCart(myCart);
 await cartServices.totalItemsInCart(myWhishList); 
